@@ -1,3 +1,4 @@
+using Assignment4.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
@@ -9,7 +10,7 @@ namespace Assignment4.Entities
         public DbSet<Tag> tags { get; set; }
         public DbSet<User> users { get; set; }
 
-        public KanbanContext(DbContextOptions<KanbanContext> options) : base(options) { }
+        public KanbanContext(DbContextOptions options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

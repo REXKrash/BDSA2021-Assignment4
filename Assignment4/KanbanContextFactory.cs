@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using System;
 using System.IO;
 using Microsoft.Extensions.Configuration;
+using Assignment4.Entities;
 
 namespace Assignment4
 {

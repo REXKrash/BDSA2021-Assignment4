@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -12,9 +11,8 @@ namespace Assignment4.Entities
         public string Name { get; set; }
 
         [Required]
-        [Key]
         [StringLength(100)]
         public string Email { get; set; }
-        public ICollection<Task> Tasks { get; set; }
+        public virtual ICollection<Task> Tasks { get; set; }
     }
 }

@@ -1,11 +1,11 @@
 ﻿using System;
+using System.Data;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
-using System.Data.SqlClient;
-using System.Data;
-using Microsoft.Extensions.Configuration;
-using Microsoft.EntityFrameworkCore;
 using Assignment4.Entities;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace Assignment4
 {
