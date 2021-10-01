@@ -93,4 +93,3 @@ To submit the assignment you need to create a .pdf document using LaTeX containi
 Members of the triplets should submit the same PDF file to pass the assignments.  Make sure all group names and ID are clearly marked on the front page. 
 
 
-
