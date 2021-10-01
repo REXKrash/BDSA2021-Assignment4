@@ -5,6 +5,9 @@ namespace Assignment4.Entities
 {
     public class KanbanContext : DbContext
     {
+        public DbSet<Task> tasks { get; set; }
+        public DbSet<Tag> tags { get; set; }
+        public DbSet<User> users { get; set; }
 
         public KanbanContext(DbContextOptions<KanbanContext> options) : base(options) { }
 
