@@ -1,6 +1,9 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+
 namespace Assignment4.Entities
 {
-    public class KanbanContext
+    public class KanbanContext : DbContext
     {
 
         public KanbanContext(DbContextOptions<KanbanContext> options) : base(options) { }
