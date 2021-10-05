@@ -1,16 +1,12 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
+using Assignment4.Core;
 using Assignment4.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Microsoft.Extensions.Configuration;
-<<<<<<< HEAD:Assignment4/KanbanContextFactory.cs
-using Assignment4.Core;
-using System.Collections.Generic;
-=======
-using Assignment4.Entities;
->>>>>>> 34bf0bcdd10a041627c2fd3de5207aa176a78b7a:Assignment4/KanbanContextFactory
 
 namespace Assignment4
 {
@@ -39,17 +35,18 @@ namespace Assignment4
             context.Database.ExecuteSqlRaw("DBCC CHECKIDENT ('dbo.Tasks', RESEED, 0)");
             context.Database.ExecuteSqlRaw("DBCC CHECKIDENT ('dbo.TasksTags', RESEED, 0)");
 
-            var task1 = new TaskDTO {
+            var task1 = new TaskDTO
+            {
                 Id = 1,
                 Title = "Code",
                 Description = "Code some things",
                 AssignedToId = 1,
-                Tags = new List() {"Urgent", "C#"}.AsReadOnly(),
+                Tags = new List<string>() { "Urgent", "C#" }.AsReadOnly(),
                 State = State.New
             };
-            context.Tasks.AddRange(
+            /*context.Tasks.AddRange(
                 task1
-            );
+            );*/
 
             context.SaveChanges();
         }
