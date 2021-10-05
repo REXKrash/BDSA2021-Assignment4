@@ -5,8 +5,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Microsoft.Extensions.Configuration;
+<<<<<<< HEAD:Assignment4/KanbanContextFactory.cs
 using Assignment4.Core;
 using System.Collections.Generic;
+=======
+using Assignment4.Entities;
+>>>>>>> 34bf0bcdd10a041627c2fd3de5207aa176a78b7a:Assignment4/KanbanContextFactory
 
 namespace Assignment4
 {
