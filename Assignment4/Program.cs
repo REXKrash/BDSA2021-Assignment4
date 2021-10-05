@@ -1,8 +1,4 @@
-﻿using System;
-using System.Data;
-using System.Data.SqlClient;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using Assignment4.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
