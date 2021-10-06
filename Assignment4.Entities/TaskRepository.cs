@@ -124,9 +124,7 @@ namespace Assignment4.Entities
             command.Parameters.AddWithValue("@State", task.State.ToString());
 
             OpenConnection();
-
             command.ExecuteNonQuery();
-
             CloseConnection();
         }
 
