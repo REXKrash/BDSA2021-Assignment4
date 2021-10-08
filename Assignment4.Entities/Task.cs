@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Assignment4.Core;
@@ -13,8 +14,11 @@ namespace Assignment4.Entities
         public string Title { get; set; }
         public User AssignedTo { get; set; }
 
-        //[MaxLength(50)]
         public string Description { get; set; }
+
+        public DateTime Created { get; set; }
+        public DateTime StatusUpdated { get; set; }
+
 
         [Required]
         public State State { get; set; }

@@ -28,6 +28,7 @@ namespace Assignment4
 
         public static void Seed(KanbanContext context)
         {
+            /*
             context.Database.ExecuteSqlRaw("DELETE dbo.Tasks");
             context.Database.ExecuteSqlRaw("DELETE dbo.TasksTags");
             context.Database.ExecuteSqlRaw("DBCC CHECKIDENT ('dbo.Tasks', RESEED, 0)");
@@ -42,7 +43,7 @@ namespace Assignment4
                 Tags = new List<string>() { "Urgent", "C#" }.AsReadOnly(),
                 State = State.New
             };
-            /*context.Tasks.AddRange(
+            context.Tasks.AddRange(
                 task1
             );*/
 
