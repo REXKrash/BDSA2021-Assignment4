@@ -16,7 +16,7 @@ namespace Assignment4.Entities
         public (Response Response, int TagId) Create(TagCreateDTO tag)
         {
             var checkTag = _context.Tags.Where(t => t.Name == tag.Name).FirstOrDefault();
-            if (checkTag == null)
+            if (checkTag != null)
             {
                 return (Response.Conflict, -1);
             }

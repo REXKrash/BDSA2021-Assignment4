@@ -33,7 +33,7 @@ namespace Assignment4.Entities.Tests
         [Fact]
         public void Create_given_Task_returns_task_with_Title()
         {
-            var task = new TaskCreateDTO { Title = "Do some coding", Tags = new List<string> { "Bug" } };
+            var task = new TaskCreateDTO { Title = "Do some coding", Tags = new List<string> { "Bug" }, AssignedToId = 1 };
             var created = _repo.Create(task);
 
             Assert.Equal((Response.Created, 2), created);

@@ -21,6 +21,10 @@ namespace Assignment4.Entities.Tests
 
             context.Database.EnsureCreated();
             context.Tags.Add(new Tag { Name = "Bug" });
+            context.Tags.Add(new Tag { Name = "Feature" });
+            context.Tags.Add(new Tag { Name = "On hold" });
+            context.Tags.Add(new Tag { Name = "Frontend" });
+            context.Tags.Add(new Tag { Name = "Backend" });
             context.SaveChanges();
 
             _context = context;
@@ -33,7 +37,7 @@ namespace Assignment4.Entities.Tests
             var tag = new TagCreateDTO { Name = "Urgent" };
             var created = _repo.Create(tag);
 
-            Assert.Equal((Response.Created, 2), created);
+            Assert.Equal((Response.Created, 6), created);
         }
 
         [Fact]
@@ -48,6 +52,20 @@ namespace Assignment4.Entities.Tests
         {
             var tag = _repo.Read(1);
             Assert.Equal(new TagDTO(1, "Bug"), tag);
+        }
+
+        [Fact]
+        public void ReadAll_returns_all_tags()
+        {
+            var allTags = _repo.ReadAll();
+
+            Assert.Collection(allTags,
+                c => Assert.Equal(new TagDTO(1, "Bug"), c),
+                c => Assert.Equal(new TagDTO(2, "Feature"), c),
+                c => Assert.Equal(new TagDTO(3, "On hold"), c),
+                c => Assert.Equal(new TagDTO(4, "Frontend"), c),
+                c => Assert.Equal(new TagDTO(5, "Backend"), c)
+            );
         }
 
         public void Dispose()
