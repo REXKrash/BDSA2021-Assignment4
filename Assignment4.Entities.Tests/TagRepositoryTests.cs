@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Assignment4.Core;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +21,11 @@ namespace Assignment4.Entities.Tests
             var context = new KanbanContext(builder.Options);
 
             context.Database.EnsureCreated();
+
+            var user = new User { Id = 1, Name = "Paolo", Email = "paolo@google.com" };
+            context.Users.Add(user);
+            context.Tasks.Add(new Task { Title = "Setup project", AssignedTo = user, Tags = new List<Tag> { new Tag { Name = "Bug" } } });
+
             context.Tags.Add(new Tag { Name = "Bug" });
             context.Tags.Add(new Tag { Name = "Feature" });
             context.Tags.Add(new Tag { Name = "On hold" });
@@ -37,7 +43,7 @@ namespace Assignment4.Entities.Tests
             var tag = new TagCreateDTO { Name = "Urgent" };
             var created = _repo.Create(tag);
 
-            Assert.Equal((Response.Created, 6), created);
+            Assert.Equal((Response.Created, 7), created);
         }
 
         [Fact]
@@ -66,6 +72,40 @@ namespace Assignment4.Entities.Tests
                 c => Assert.Equal(new TagDTO(4, "Frontend"), c),
                 c => Assert.Equal(new TagDTO(5, "Backend"), c)
             );
+        }
+
+        [Fact]
+        public void Trying_to_delete_unassigned_without_force_returns_deleted()
+        {
+            var response = _repo.Delete(2, false);
+            Assert.Equal(Response.Deleted, response);
+        }
+
+        [Fact]
+        public void Trying_to_delete_unassigned_with_force_returns_deleted()
+        {
+            var response = _repo.Delete(2, true);
+            Assert.Equal(Response.Deleted, response);
+        }
+
+        [Fact]
+        public void Trying_to_delete_assigned_without_force_returns_conflict()
+        {
+            var response = _repo.Delete(1, false);
+            Assert.Equal(Response.Conflict, response);
+        }
+
+        [Fact]
+        public void Trying_to_delete_assigned_with_force_returns_deleted()
+        {
+            var response = _repo.Delete(1, true);
+            Assert.Equal(Response.Deleted, response);
+        }
+
+        [Fact]
+        public void update()
+        {
+
         }
 
         public void Dispose()
