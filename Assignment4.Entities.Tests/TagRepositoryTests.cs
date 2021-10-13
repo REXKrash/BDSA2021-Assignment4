@@ -26,7 +26,7 @@ namespace Assignment4.Entities.Tests
             context.Users.Add(user);
             context.Tasks.Add(new Task { Title = "Setup project", AssignedTo = user, Tags = new List<Tag> { new Tag { Name = "Bug" } } });
 
-            context.Tags.Add(new Tag { Name = "Bug" });
+            context.Tags.Add(new Tag { Name = "Issue" });
             context.Tags.Add(new Tag { Name = "Feature" });
             context.Tags.Add(new Tag { Name = "On hold" });
             context.Tags.Add(new Tag { Name = "Frontend" });
@@ -67,10 +67,11 @@ namespace Assignment4.Entities.Tests
 
             Assert.Collection(allTags,
                 c => Assert.Equal(new TagDTO(1, "Bug"), c),
-                c => Assert.Equal(new TagDTO(2, "Feature"), c),
-                c => Assert.Equal(new TagDTO(3, "On hold"), c),
-                c => Assert.Equal(new TagDTO(4, "Frontend"), c),
-                c => Assert.Equal(new TagDTO(5, "Backend"), c)
+                c => Assert.Equal(new TagDTO(2, "Issue"), c),
+                c => Assert.Equal(new TagDTO(3, "Feature"), c),
+                c => Assert.Equal(new TagDTO(4, "On hold"), c),
+                c => Assert.Equal(new TagDTO(5, "Frontend"), c),
+                c => Assert.Equal(new TagDTO(6, "Backend"), c)
             );
         }
 
@@ -103,9 +104,12 @@ namespace Assignment4.Entities.Tests
         }
 
         [Fact]
-        public void update()
+        public void Update_tag_with_new_name_check_if_name_changes()
         {
+            _repo.Update(new TagUpdateDTO { Id = 2, Name = "Critical issue" });
 
+            var tag = _repo.Read(2);
+            Assert.Equal(new TagDTO(2, "Critical issue"), tag);
         }
 
         public void Dispose()

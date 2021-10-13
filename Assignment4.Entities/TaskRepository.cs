@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using Assignment4.Core;
 
@@ -106,12 +107,20 @@ namespace Assignment4.Entities
 
         public IReadOnlyCollection<TaskDTO> ReadAllByTag(string tag)
         {
-            return _context.Tasks.Where(t => t.Tags.Select(ta => ta.Name).ToList().Contains(tag)).Select(t => new TaskDTO(
-                t.Id,
-                t.Title,
-                t.AssignedTo.Name,
-                t.Tags.Select(t => t.Name).ToList().AsReadOnly(),
-                t.State)).ToList().AsReadOnly();
+            var tasks = new List<TaskDTO>();
+            foreach (var task in _context.Tasks)
+            {
+                var newTags = new List<string>();
+                foreach (var ta in task.Tags)
+                {
+                    if (ta.Name.ToLower().Equals(tag.ToLower()))
+                    {
+                        tasks.Add(new TaskDTO(task.Id, task.Title, task.AssignedTo.Name, newTags, task.State));
+                        break;
+                    }
+                }
+            }
+            return tasks.AsReadOnly();
         }
 
         public IReadOnlyCollection<TaskDTO> ReadAllByUser(int userId)
